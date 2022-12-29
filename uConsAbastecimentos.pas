@@ -48,6 +48,7 @@ begin
    case Key of
       VK_F5: spAbastecerClick(Self);
       VK_F9: spRelatorioClick(Self);
+      VK_ESCAPE: Close;
    end;
 end;
 

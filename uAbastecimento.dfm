@@ -456,8 +456,5 @@ object frAbastecimento: TfrAbastecimento
     Width = 436
     Height = 19
     Panels = <>
-    ExplicitLeft = 368
-    ExplicitTop = 168
-    ExplicitWidth = 0
   end
 end

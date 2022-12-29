@@ -1,11 +1,11 @@
 object frSelAbastecimentos: TfrSelAbastecimentos
   Left = 0
   Top = 0
+  Width = 1110
+  Height = 408
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Relat'#243'rio de Abastecimentos'
-  ClientHeight = 288
-  ClientWidth = 454
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +14,7 @@ object frSelAbastecimentos: TfrSelAbastecimentos
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
@@ -207,7 +208,6 @@ object frSelAbastecimentos: TfrSelAbastecimentos
       Height = 21
       TabStop = False
       TabOrder = 7
-      Text = 'Edit1'
     end
     object edTanque: TLabeledEdit
       Left = 81
@@ -228,7 +228,6 @@ object frSelAbastecimentos: TfrSelAbastecimentos
       Height = 21
       TabStop = False
       TabOrder = 4
-      Text = 'edDescTanque'
     end
   end
   object gbParametros: TGroupBox
@@ -244,6 +243,7 @@ object frSelAbastecimentos: TfrSelAbastecimentos
       Width = 58
       Height = 13
       Caption = 'Agrupar por'
+      Visible = False
     end
     object rgRelatorio: TRadioGroup
       Left = 8
@@ -266,10 +266,440 @@ object frSelAbastecimentos: TfrSelAbastecimentos
       ItemIndex = 0
       TabOrder = 1
       Text = 'Bomba'
+      Visible = False
       Items.Strings = (
         'Bomba'
         'Tanque'
         'Combust'#237'vel')
     end
+  end
+  object rlAbastecimentos: TRLReport
+    Left = 474
+    Top = 8
+    Width = 794
+    Height = 1123
+    DataSource = dsDetalhe
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    Visible = False
+    BeforePrint = rlAbastecimentosBeforePrint
+    object rlbdTitle: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 58
+      BandType = btTitle
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      object rllbTitle: TRLSystemInfo
+        Left = 321
+        Top = 0
+        Width = 75
+        Height = 30
+        Align = faCenterTop
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -21
+        Font.Name = 'Arial Black'
+        Font.Style = [fsBold]
+        Info = itTitle
+        ParentFont = False
+        Text = ''
+      end
+      object rllbPage: TRLSystemInfo
+        Left = 631
+        Top = 0
+        Width = 87
+        Height = 16
+        Align = faRightTop
+        Info = itPageNumber
+        Text = ''
+      end
+      object rlbPagina: TRLLabel
+        Left = 579
+        Top = 0
+        Width = 52
+        Height = 16
+        Align = faRightTop
+        Caption = 'P'#225'gina: '
+      end
+      object rllbDatas: TRLLabel
+        Left = 0
+        Top = 30
+        Width = 224
+        Height = 16
+        Caption = 'Per'#237'odo de XX/XX/XXXX at'#233' XX/XX/XXXX'
+      end
+    end
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 96
+      Width = 718
+      Height = 27
+      BandType = btColumnHeader
+      object rllID: TRLLabel
+        Left = 0
+        Top = 0
+        Width = 60
+        Height = 19
+        Align = faLeftTop
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'ID'
+        BeforePrint = rllIDBeforePrint
+      end
+      object RLLabel2: TRLLabel
+        Left = 60
+        Top = 0
+        Width = 125
+        Height = 19
+        Align = faLeftTop
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'Data/hora'
+      end
+      object RLLabel3: TRLLabel
+        Left = 185
+        Top = 0
+        Width = 100
+        Height = 19
+        Align = faLeftTop
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'Bomba'
+      end
+      object RLLabel4: TRLLabel
+        Left = 285
+        Top = 0
+        Width = 100
+        Height = 19
+        Align = faLeftTop
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'Combust'#237'vel'
+      end
+      object RLLabel5: TRLLabel
+        Left = 385
+        Top = 0
+        Width = 110
+        Height = 19
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'Litros'
+      end
+      object RLLabel7: TRLLabel
+        Left = 495
+        Top = 0
+        Width = 110
+        Height = 19
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'Valor Total'
+      end
+      object RLLabel8: TRLLabel
+        Left = 605
+        Top = 0
+        Width = 110
+        Height = 19
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        Borders.Sides = sdCustom
+        Borders.DrawLeft = False
+        Borders.DrawTop = False
+        Borders.DrawRight = False
+        Borders.DrawBottom = True
+        Caption = 'Imposto'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 144
+      Width = 718
+      Height = 32
+      BandType = btColumnFooter
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = True
+      Borders.DrawRight = False
+      Borders.DrawBottom = False
+      object RLTTID: TRLLabel
+        Left = 0
+        Top = 1
+        Width = 60
+        Height = 16
+        Align = faLeftTop
+        AutoSize = False
+        Caption = ' '
+      end
+      object RllTotais: TRLLabel
+        Left = 60
+        Top = 1
+        Width = 325
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = 'Totais: '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object rlbdttLitros: TRLDBResult
+        Left = 385
+        Top = 1
+        Width = 110
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'bdLitros'
+        DataSource = dsDetalhe
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Text = ''
+        OnCompute = rlbdttLitrosCompute
+      end
+      object rlbdttTotal: TRLDBResult
+        Left = 495
+        Top = 1
+        Width = 110
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'bdVlrTotal'
+        DataSource = dsDetalhe
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Text = ''
+        OnCompute = rlbdttTotalCompute
+      end
+      object rlbdttImposto: TRLDBResult
+        Left = 605
+        Top = 1
+        Width = 110
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'bdVlrImposto'
+        DataSource = dsDetalhe
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Text = ''
+        OnCompute = rlbdttImpostoCompute
+      end
+    end
+    object rlbdImposto: TRLBand
+      Left = 38
+      Top = 123
+      Width = 718
+      Height = 21
+      object rlBDID: TRLDBText
+        Left = 0
+        Top = 0
+        Width = 60
+        Height = 16
+        Align = faLeftTop
+        AutoSize = False
+        DataField = 'bdIDAbastecimento'
+        DataSource = dsDetalhe
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 60
+        Top = 0
+        Width = 125
+        Height = 16
+        Align = faLeftTop
+        AutoSize = False
+        DataField = 'bdDataHora'
+        DataSource = dsDetalhe
+        Text = ''
+        BeforePrint = RLDBText2BeforePrint
+      end
+      object RLDBText3: TRLDBText
+        Left = 185
+        Top = 0
+        Width = 100
+        Height = 16
+        Align = faLeftTop
+        AutoSize = False
+        DataField = 'Bomba'
+        DataSource = dsDetalhe
+        Text = ''
+      end
+      object RLDBText4: TRLDBText
+        Left = 285
+        Top = 0
+        Width = 100
+        Height = 16
+        Align = faLeftTop
+        AutoSize = False
+        DataField = 'Combustivel'
+        DataSource = dsDetalhe
+        Text = ''
+      end
+      object tlbdLitros: TRLDBText
+        Left = 385
+        Top = 0
+        Width = 110
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'bdLitros'
+        DataSource = dsDetalhe
+        Text = ''
+      end
+      object tlbdTotal: TRLDBText
+        Left = 495
+        Top = 0
+        Width = 110
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'bdVlrTotal'
+        DataSource = dsDetalhe
+        Text = ''
+      end
+      object tlbdImposto: TRLDBText
+        Left = 605
+        Top = 0
+        Width = 110
+        Height = 16
+        Align = faLeftTop
+        Alignment = taRightJustify
+        AutoSize = False
+        DataField = 'bdVlrImposto'
+        DataSource = dsDetalhe
+        Text = ''
+      end
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 176
+      Width = 718
+      Height = 16
+      BandType = btFooter
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = True
+      Borders.DrawRight = False
+      Borders.DrawBottom = False
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 680
+        Top = 1
+        Width = 38
+        Height = 15
+        Align = faRightTop
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        Info = itHour
+        ParentFont = False
+        Text = ''
+      end
+      object RLLabel9: TRLLabel
+        Left = 657
+        Top = 1
+        Width = 23
+        Height = 15
+        Align = faRightTop
+        Caption = ' '#224's '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 620
+        Top = 1
+        Width = 37
+        Height = 15
+        Align = faRightTop
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+        Text = ''
+      end
+      object RLLabel10: TRLLabel
+        Left = 551
+        Top = 1
+        Width = 69
+        Height = 15
+        Align = faRightTop
+        Caption = 'Emitido em '
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+    end
+  end
+  object dsDetalhe: TDataSource
+    DataSet = dmPosto.qrRelatorio
+    Left = 8
+    Top = 352
   end
 end

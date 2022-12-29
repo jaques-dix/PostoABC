@@ -54,7 +54,6 @@ type
     rlbdttUnitario: TRLDBResult;
     rlbdttLitros: TRLDBResult;
     RLLabel11: TRLLabel;
-    procedure FormShow(Sender: TObject);
     procedure rlAbastecimentosBeforePrint(Sender: TObject;
       var PrintIt: Boolean);
   private
@@ -62,7 +61,7 @@ type
     FParametros: RegParAbastecimento;
   public
     { Public declarations }
-    procedure pSetParametros(prParametros: RegParAbastecimento);
+    procedure EmitirRelatorio(prParametros: RegParAbastecimento);
   end;
 
 var
@@ -77,7 +76,7 @@ uses uDMPosto, uConstPostoABC, util, System.StrUtils;
 
 { TfrRelAbastecimentos }
 
-procedure TfrRelAbastecimentos.FormShow(Sender: TObject);
+procedure TfrRelAbastecimentos.EmitirRelatorio(prParametros: RegParAbastecimento);
 var
    wSQL,
    wOrderBy: String;
@@ -128,11 +127,6 @@ begin
     dmPosto.qrRelatorio.Active := true;
 
     rlAbastecimentos.Preview();
-end;
-
-procedure TfrRelAbastecimentos.pSetParametros(prParametros: RegParAbastecimento);
-begin
-   FParametros := prParametros;
 end;
 
 procedure TfrRelAbastecimentos.rlAbastecimentosBeforePrint(Sender: TObject; var PrintIt: Boolean);
