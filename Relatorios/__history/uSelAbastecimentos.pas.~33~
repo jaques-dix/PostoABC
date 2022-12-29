@@ -1,0 +1,148 @@
+unit uSelAbastecimentos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.Buttons,
+  Vcl.ExtCtrls;
+
+type
+  TfrSelAbastecimentos = class(TForm)
+    gbFiltros: TGroupBox;
+    edDataDe: TMaskEdit;
+    edDataAte: TMaskEdit;
+    lbPeriodoAte: TLabel;
+    lbPeriodoDe: TLabel;
+    edBomba: TLabeledEdit;
+    edProduto: TLabeledEdit;
+    edDescBomba: TEdit;
+    edDescCombustivel: TEdit;
+    edTanque: TLabeledEdit;
+    edDescTanque: TEdit;
+    gbParametros: TGroupBox;
+    rgRelatorio: TRadioGroup;
+    Label1: TLabel;
+    cbAgrupar: TComboBox;
+    spEmitir: TSpeedButton;
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure spEmitirClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure edDataDeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+    function fValidaDadosTela: Boolean;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  frSelAbastecimentos: TfrSelAbastecimentos;
+
+implementation
+
+{$R *.dfm}
+
+uses util, uDMPosto, uRelAbastecimentos;
+
+procedure TfrSelAbastecimentos.edDataDeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+   //Atalho para o dia de hoje...
+   if Key = VK_F2 then
+      TEdit(Sender).Text := FormatDateTime('dd/mm/yyyy', date);
+end;
+
+procedure TfrSelAbastecimentos.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+      begin
+         SelectNext(ActiveControl as TWinControl, True, True);
+         Key := #0;
+      end;
+end;
+
+procedure TfrSelAbastecimentos.FormShow(Sender: TObject);
+begin
+   //Já vamos sugerir os últimos 30 dias aqui
+   //Poderia ser também o 1 dia do mês corrente, vai do gosto aqui...
+   edDataAte.Text := FormatDateTime('dd/mm/yyyy', date);
+   edDataDe.Text  := FormatDateTime('dd/mm/yyyy', date - 30);
+end;
+
+function TfrSelAbastecimentos.fValidaDadosTela: Boolean;
+var
+   wMsg: String;
+begin
+   Result := false;
+   wMsg   := '';
+
+   //Validando se as datas estão OK
+   if getSoNumeros(edDataDe.Text) = '' then
+      addItemListaString(wMsg, '* informe a data inicial;')
+   else
+      if not isDataValida(edDataDe.Text) then
+         addItemListaString(wMsg, '* data inicial inválida;');
+
+   if getSoNumeros(edDataAte.Text) = '' then
+      addItemListaString(wMsg, '* informe a data final;')
+   else
+      if not isDataValida(edDataAte.Text) then
+         addItemListaString(wMsg, '* data final inválida;');
+
+   //Se já tiver erros aqui, nem adianta querer verificar se a data está correta ou não
+   if wMsg = '' then
+      begin
+         if getDataMaior(edDataDe.Text, edDataAte.Text) = edDataDe.Text then
+            addItemListaString(wMsg, '* data inicial não pode ser superior a data final;');
+      end;
+
+   if getSoNumeros(edBomba.Text) <> '' then
+      begin
+         if not dmPosto.isDadoValido('tbBombas', 'bdIDBomba', getSoNumeros(edBomba.Text)) then
+            addItemListaString(wMsg, '* bomba não cadastrada;');
+      end
+   else
+      if getSoNumeros(edTanque.Text) <> '' then
+         begin
+            if not dmPosto.isDadoValido('tbTanques', 'bdIDTanques', getSoNumeros(edTanque.Text)) then
+               addItemListaString(wMsg, '* tanque não cadastrado;');
+         end
+   else
+      if getSoNumeros(edProduto.Text) <> '' then
+         begin
+            if not dmPosto.isDadoValido('tbCombustiveis', 'bdIDCombustivel', getSoNumeros(edProduto.Text)) then
+               addItemListaString(wMsg, '* combustível não cadastrado;');
+         end;
+
+   if wMsg <> '' then
+      MessageDlg('As seguintes inconsistências foram entradas nos filtros/parâmetros:'#13#13+
+                 wMsg + #13#13 + 'Verifique!', mtWarning, [mbOK], 0)
+   else
+      Result := true;
+end;
+
+procedure TfrSelAbastecimentos.spEmitirClick(Sender: TObject);
+var
+   wParametros: RegParAbastecimento;
+   wTela: TfrRelAbastecimentos;
+begin
+   if fValidaDadosTela then
+      begin
+         FDataDe,
+         FDataAte,
+         FBomba,
+         FTanque,
+         FCombustivel,
+         FModelo,
+         FAgrupador: String;
+
+         wTela := TfrRelAbastecimentos.Create(Self, wParametros);
+         wTela.ShowModal;
+      end;
+
+   edDataDe.SetFocus;
+end;
+
+end.

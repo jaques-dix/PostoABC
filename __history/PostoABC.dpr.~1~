@@ -1,0 +1,14 @@
+program PostoABC;
+
+uses
+  Vcl.Forms,
+  uConsAbastecimentos in 'uConsAbastecimentos.pas' {frConsAbastecimentos};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrConsAbastecimentos, frConsAbastecimentos);
+  Application.Run;
+end.

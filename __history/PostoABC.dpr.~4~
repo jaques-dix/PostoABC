@@ -1,0 +1,18 @@
+program PostoABC;
+
+uses
+  Vcl.Forms,
+  uConsAbastecimentos in 'uConsAbastecimentos.pas' {frConsAbastecimentos},
+  uDMPosto in 'uDMPosto.pas' {dmPosto: TDataModule},
+  uConstPostoABC in 'uConstPostoABC.pas',
+  uAbastecimento in 'uAbastecimento.pas' {frAbastecimento};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdmPosto, dmPosto);
+  Application.CreateForm(TfrConsAbastecimentos, frConsAbastecimentos);
+  Application.Run;
+end.
