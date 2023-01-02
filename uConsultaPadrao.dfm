@@ -31,6 +31,7 @@ object frConsultaPadrao: TfrConsultaPadrao
     Width = 719
     Height = 334
     Align = alClient
+    DataSource = dsGrid
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
