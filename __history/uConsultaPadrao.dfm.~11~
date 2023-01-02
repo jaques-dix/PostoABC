@@ -1,0 +1,50 @@
+object frConsultaPadrao: TfrConsultaPadrao
+  Left = 0
+  Top = 0
+  Caption = 'Consulta'
+  ClientHeight = 353
+  ClientWidth = 719
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  OnKeyDown = FormKeyDown
+  PixelsPerInch = 96
+  TextHeight = 13
+  object stConsulta: TStatusBar
+    Left = 0
+    Top = 334
+    Width = 719
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 264
+    ExplicitTop = 184
+    ExplicitWidth = 0
+  end
+  object grConsulta: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 719
+    Height = 334
+    Align = alClient
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object dsGrid: TDataSource
+    DataSet = FDConsulta
+    Left = 160
+    Top = 104
+  end
+  object FDConsulta: TFDQuery
+    Left = 232
+    Top = 104
+  end
+end

@@ -1,0 +1,144 @@
+unit uConsultaController;
+
+interface
+
+uses Vcl.Forms, uConsultaPadrao, Vcl.Controls, Data.DB, Vcl.Grids, Vcl.DBGrids,
+     System.Classes, Winapi.Windows, Vcl.StdCtrls, System.SysUtils;
+
+type
+   TConsultaController = class
+   protected
+      FCaption: String;
+      FTela: TfrConsultaPadrao;
+      FEditReturn: TWinControl;
+
+      //Funções a serem implementadas nos filhos
+      function getSQLConsulta: String; virtual; abstract;
+      function getFieldReturn: String; virtual; abstract;
+
+      //funções de aparência da tela...
+      procedure GridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+      procedure ConfigColunasGrid; virtual; abstract;
+      procedure addColuna(prFieldName, prTitle: String; prWidth: Integer; prAlignment: TAlignment = taLeftJustify);
+      procedure refreshStatusBar;
+
+   public
+      constructor Create(prEditReturn: TWinControl);
+
+      procedure Inicializa;
+   end;
+
+   TConsultaBomba = class(TConsultaController)
+   protected
+      function getSQLConsulta: String; override;
+      function getFieldReturn: String; override;
+
+      procedure ConfigColunasGrid; override;
+
+   public
+      constructor Create(prEditReturn: TWinControl);
+   end;
+
+implementation
+
+{ TConsultaController }
+
+uses uDMPosto;
+
+procedure TConsultaController.addColuna(prFieldName, prTitle: String; prWidth: Integer; prAlignment: TAlignment);
+var
+   wColuna: TColumn;
+begin
+    wColuna := FTela.grConsulta.Columns.Add;
+    wColuna.FieldName     := prFieldName;
+    wColuna.Alignment     := prAlignment;
+    wColuna.Width         := prWidth;
+    wColuna.Title.Caption := prTitle;
+
+end;
+
+constructor TConsultaController.Create(prEditReturn: TWinControl);
+begin
+   FEditReturn := prEditReturn;
+end;
+
+procedure TConsultaController.GridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+   //Se teclou ENTER e tem algum edit para fazer o retorno, faz o retorno e fecha a consulta
+   if (Key = VK_RETURN) and (FEditReturn <> nil) then
+      begin
+         TEdit(FEditReturn).Text := FTela.FDConsulta.FieldByName(getFieldReturn).AsString;
+
+         if Assigned(TEdit(FEditReturn).OnExit) then
+            TEdit(FEditReturn).OnExit(nil);
+
+         FTela.Close;
+      end;
+end;
+
+procedure TConsultaController.Inicializa;
+begin
+   //Criando a tela e colocando o caption
+   FTela := TfrConsultaPadrao.Create(nil);
+   FTela.Caption := FCaption;
+
+   //Com a consulta aberta podemos configurar as colunas do grid
+   ConfigColunasGrid;
+
+   //Abrindo a consulta
+   FTela.FDConsulta.Connection := dmPosto.conn;
+   FTela.FDConsulta.SQL.Clear;
+   FTela.FDConsulta.SQL.Add(getSQLConsulta);
+   FTela.FDConsulta.Open;
+
+   //Ajustando o statusBar e atualizando suas informações
+   FTela.stConsulta.Panels.Add;
+   FTela.stConsulta.Panels[0].Width := FTela.Width;
+   refreshStatusBar;
+
+   FTela.grConsulta.OnKeyDown := GridKeyDown;
+
+   //Mostrando a tela
+   FTela.ShowModal;
+end;
+
+procedure TConsultaController.refreshStatusBar;
+begin
+   if Assigned(FTela) then
+      FTela.stConsulta.Panels[0].Text := 'Registros encontrados: ' + IntToStr(FTela.FDConsulta.RecordCount);
+end;
+
+{ TConsultaBomba }
+
+procedure TConsultaBomba.ConfigColunasGrid;
+
+begin
+   FTela.grConsulta.Columns.Clear;
+
+   addColuna('bdIDBomba', 'ID', 60);
+   addColuna('bdDescricao', 'Bomba', 150);
+   addColuna('DescTanque', 'Tanque', 150);
+   addColuna('
+end;
+
+constructor TConsultaBomba.Create(prEditReturn: TWinControl);
+begin
+   inherited Create(prEditReturn);
+
+   FCaption := 'Consulta de bombas';
+end;
+
+function TConsultaBomba.getFieldReturn: String;
+begin
+   Result := 'bdIDBomba';
+end;
+
+function TConsultaBomba.getSQLConsulta: String;
+begin
+   Result := 'Select bb.bdIDBomba, bb.bdDescricao, tq.bdDescricao AS DescTanque, cb.bdDescricao As Combustivel'#13 +
+             'from tbBombas bb'#13 +
+             '  inner join tbTanques tq on tq.bdIDTanques = bb.bdTanque'#13 +
+             '  inner join tbCombustiveis cb on cb.bdIDCombustivel = tq.bdIDTanques';
+end;
+
+end.

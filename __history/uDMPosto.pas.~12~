@@ -1,0 +1,64 @@
+unit uDMPosto;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, Data.DB,
+  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet;
+
+type
+  TdmPosto = class(TDataModule)
+    conn: TFDConnection;
+    qrGrid: TFDQuery;
+    dsGrid: TDataSource;
+    FDQuery: TFDQuery;
+    FD_Delete: TFDQuery;
+    FD_Consulta: TFDQuery;
+    procedure qrGridAfterOpen(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Conectar;
+    procedure LoadGridAbastecimentos(prSomenteDia: Boolean);
+  end;
+
+var
+  dmPosto: TdmPosto;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses uConstPostoABC;
+
+{$R *.dfm}
+
+{ TdmPosto }
+
+procedure TdmPosto.Conectar;
+begin
+   conn.Connected := true;
+end;
+
+procedure TdmPosto.LoadGridAbastecimentos(prSomenteDia: Boolean);
+begin
+   qrGrid.SQL.Clear;
+   qrGrid.SQL.Add(cSQL_ConsGrid);
+   qrGrid.Active := true;
+end;
+
+procedure TdmPosto.qrGridAfterOpen(DataSet: TDataSet);
+begin
+   TFloatField(qrGrid.FieldByName('bdVlrProduto')).DisplayFormat := cMask_Money;
+   TFloatField(qrGrid.FieldByName('bdVlrTotal')).DisplayFormat   := cMask_Money;
+   TFloatField(qrGrid.FieldByName('bdVlrImposto')).DisplayFormat := cMask_Money;
+
+   TFloatField(qrGrid.FieldByName('bdLitros')).DisplayFormat := cMask_Litros;
+end;
+
+end.
