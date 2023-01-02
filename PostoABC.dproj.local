@@ -2,31 +2,36 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/12/27 10:50:26.000.508,=C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 11:05:38.000.922,C:\Projetos\Posto ABC\frConsAbastecimentos.dfm=C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2022/12/27 11:05:38.000.922,C:\Projetos\Posto ABC\frConsAbastecimentos.pas=C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 11:06:17.000.140,C:\Projetos\Posto ABC\uConsAbastecimentos.pas=C:\Projetos\Posto ABC\frConsAbastecimentos.pas</Transaction>
-    <Transaction>2022/12/27 11:06:17.000.140,C:\Projetos\Posto ABC\uConsAbastecimentos.dfm=C:\Projetos\Posto ABC\frConsAbastecimentos.dfm</Transaction>
-    <Transaction>2022/12/27 11:06:43.000.024,C:\Projetos\Posto ABC\PostoABC.dproj=C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/12/27 11:05:38.000.922,C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\Posto ABC\frConsAbastecimentos.dfm</Transaction>
+    <Transaction>2022/12/27 11:05:38.000.922,C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Projetos\Posto ABC\frConsAbastecimentos.pas</Transaction>
+    <Transaction>2022/12/27 11:06:17.000.140,C:\Projetos\Posto ABC\frConsAbastecimentos.dfm=C:\Projetos\Posto ABC\uConsAbastecimentos.dfm</Transaction>
+    <Transaction>2022/12/27 11:06:17.000.140,C:\Projetos\Posto ABC\frConsAbastecimentos.pas=C:\Projetos\Posto ABC\uConsAbastecimentos.pas</Transaction>
+    <Transaction>2022/12/27 11:06:43.000.024,C:\Users\progvisual1\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\Posto ABC\PostoABC.dproj</Transaction>
     <Transaction>2022/12/27 11:10:47.000.137,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 11:11:27.000.290,C:\Projetos\Posto ABC\uDMPosto.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 11:11:27.000.290,C:\Projetos\Posto ABC\uDMPosto.dfm=C:\Projetos\Posto ABC\Unit1.dfm</Transaction>
+    <Transaction>2022/12/27 11:11:27.000.290,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\uDMPosto.pas</Transaction>
+    <Transaction>2022/12/27 11:11:27.000.290,C:\Projetos\Posto ABC\Unit1.dfm=C:\Projetos\Posto ABC\uDMPosto.dfm</Transaction>
     <Transaction>2022/12/27 11:37:54.000.944,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 11:38:08.000.133,C:\Projetos\Posto ABC\uConstPostoABC.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2022/12/27 11:38:08.000.133,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\uConstPostoABC.pas</Transaction>
     <Transaction>2022/12/27 12:05:21.000.835,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 12:06:06.000.598,C:\Projetos\Posto ABC\uAbastecimento.dfm=C:\Projetos\Posto ABC\Unit1.dfm</Transaction>
-    <Transaction>2022/12/27 12:06:06.000.598,C:\Projetos\Posto ABC\uAbastecimento.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2022/12/27 12:06:06.000.598,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\uAbastecimento.pas</Transaction>
+    <Transaction>2022/12/27 12:06:06.000.598,C:\Projetos\Posto ABC\Unit1.dfm=C:\Projetos\Posto ABC\uAbastecimento.dfm</Transaction>
     <Transaction>2022/12/27 14:26:37.000.152,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 14:26:59.000.725,C:\Projetos\Posto ABC\Controllers\uAbastecerControl.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2022/12/27 14:26:59.000.725,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\Controllers\uAbastecerControl.pas</Transaction>
     <Transaction>2022/12/27 14:27:29.000.113,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 14:27:42.000.610,C:\Projetos\Posto ABC\Misc\util.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2022/12/27 14:27:42.000.610,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\Misc\util.pas</Transaction>
     <Transaction>2022/12/27 14:29:31.000.531,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 14:29:41.000.912,C:\Projetos\Posto ABC\Controllers\uControllerPadrao.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/27 14:31:01.000.114,C:\Projetos\Posto ABC\Controllers\uAbastecerController.pas=C:\Projetos\Posto ABC\Controllers\uAbastecerControl.pas</Transaction>
-    <Transaction>2022/12/29 08:00:48.319,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/29 08:01:09.694,C:\Projetos\Posto ABC\Relatorios\uSelAbastecimentos.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
-    <Transaction>2022/12/29 08:01:09.694,C:\Projetos\Posto ABC\Relatorios\uSelAbastecimentos.dfm=C:\Projetos\Posto ABC\Unit1.dfm</Transaction>
-    <Transaction>2022/12/29 08:01:14.655,=C:\Projetos\Posto ABC\Unit2.pas</Transaction>
-    <Transaction>2022/12/29 08:01:24.641,C:\Projetos\Posto ABC\Relatorios\uRelAbastecimentos.pas=C:\Projetos\Posto ABC\Unit2.pas</Transaction>
-    <Transaction>2022/12/29 08:01:24.641,C:\Projetos\Posto ABC\Relatorios\uRelAbastecimentos.dfm=C:\Projetos\Posto ABC\Unit2.dfm</Transaction>
+    <Transaction>2022/12/27 14:29:41.000.912,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\Controllers\uControllerPadrao.pas</Transaction>
+    <Transaction>2022/12/27 14:31:01.000.114,C:\Projetos\Posto ABC\Controllers\uAbastecerControl.pas=C:\Projetos\Posto ABC\Controllers\uAbastecerController.pas</Transaction>
+    <Transaction>2022/12/29 08:00:48.000.319,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2022/12/29 08:01:09.000.694,C:\Projetos\Posto ABC\Unit1.dfm=C:\Projetos\Posto ABC\Relatorios\uSelAbastecimentos.dfm</Transaction>
+    <Transaction>2022/12/29 08:01:09.000.694,C:\Projetos\Posto ABC\Unit1.pas=C:\Projetos\Posto ABC\Relatorios\uSelAbastecimentos.pas</Transaction>
+    <Transaction>2022/12/29 08:01:14.000.655,=C:\Projetos\Posto ABC\Unit2.pas</Transaction>
+    <Transaction>2022/12/29 08:01:24.000.641,C:\Projetos\Posto ABC\Unit2.dfm=C:\Projetos\Posto ABC\Relatorios\uRelAbastecimentos.dfm</Transaction>
+    <Transaction>2022/12/29 08:01:24.000.641,C:\Projetos\Posto ABC\Unit2.pas=C:\Projetos\Posto ABC\Relatorios\uRelAbastecimentos.pas</Transaction>
+    <Transaction>2023/01/02 12:31:23.983,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2023/01/02 12:31:37.198,C:\Projetos\Posto ABC\uConsultaPadrao.dfm=C:\Projetos\Posto ABC\Unit1.dfm</Transaction>
+    <Transaction>2023/01/02 12:31:37.198,C:\Projetos\Posto ABC\uConsultaPadrao.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2023/01/02 12:34:17.580,=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
+    <Transaction>2023/01/02 12:34:32.718,C:\Projetos\Posto ABC\Controllers\uConsultaController.pas=C:\Projetos\Posto ABC\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

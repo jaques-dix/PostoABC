@@ -2,7 +2,8 @@ unit uAbastecerController;
 
 interface
 
-uses Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, uControllerPadrao, SysUtils;
+uses Vcl.Forms, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, uControllerPadrao, SysUtils,
+     System.Classes, Winapi.Windows;
 
 type
    TControlAbastecer = class(TControllerPadrao)
@@ -41,12 +42,14 @@ type
       procedure FBombaExit(Sender: TObject);
       procedure FLitrosExit(Sender: TObject);
       procedure FImpostoExit(Sender: TObject);
+      procedure FBombaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
    protected
       function PostData: String; override;
       function PostDataAuto: String; override;
       class function GetDeleteSQL: String; override;
       procedure LimpaTela; override;
       procedure CarregaTela; override;
+      procedure Consulta;
 
    public
       function PodeFechar: Boolean; override;
@@ -72,7 +75,7 @@ implementation
 { TControlAbastecer }
 
 uses uConstPostoABC, uDMPosto, uConsAbastecimentos, util, Vcl.Dialogs, System.UITypes,
-     StrUtils;
+     StrUtils, uConsultaController;
 
 procedure TControlAbastecer.StartControl;
 begin
@@ -144,6 +147,14 @@ begin
 
 end;
 
+procedure TControlAbastecer.Consulta;
+var
+   wConsControll: TConsultaBomba;
+begin
+   wConsControll := TConsultaBomba.Create(FBomba);
+   wConsControll.Inicializa;
+end;
+
 procedure TControlAbastecer.FBombaExit(Sender: TObject);
 var
    wAtualiza: Boolean;
@@ -184,6 +195,13 @@ begin
                FLitrosExit(nil);
             end
       end;
+
+end;
+
+procedure TControlAbastecer.FBombaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+   if Key = VK_F7 then
+      Consulta;
 
 end;
 
@@ -285,7 +303,10 @@ end;
 procedure TControlAbastecer.setBomba(const Value: TLabeledEdit);
 begin
   FBomba := Value;
+  FBomba.Hint   := 'F7 consultar';
+  FBomba.ShowHint := true;
   FBomba.OnExit := FBombaExit;
+  FBomba.OnKeyDown := FBombaKeyDown;
 end;
 
 procedure TControlAbastecer.setData(const Value: TLabeledEdit);

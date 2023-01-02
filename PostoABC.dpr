@@ -10,7 +10,9 @@ uses
   util in 'Misc\util.pas',
   uControllerPadrao in 'Controllers\uControllerPadrao.pas',
   uSelAbastecimentos in 'Relatorios\uSelAbastecimentos.pas' {frSelAbastecimentos},
-  uRelAbastecimentos in 'Relatorios\uRelAbastecimentos.pas' {frRelAbastecimentos};
+  uRelAbastecimentos in 'Relatorios\uRelAbastecimentos.pas' {frRelAbastecimentos},
+  uConsultaPadrao in 'uConsultaPadrao.pas' {frConsultaPadrao},
+  uConsultaController in 'Controllers\uConsultaController.pas';
 
 {$R *.res}
 
