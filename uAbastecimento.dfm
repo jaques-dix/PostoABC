@@ -16,8 +16,6 @@ object frAbastecimento: TfrAbastecimento
   OldCreateOrder = False
   Position = poDesktopCenter
   OnCloseQuery = FormCloseQuery
-  OnKeyDown = FormKeyDown
-  OnKeyPress = FormKeyPress
   OnShow = FormShow
   DesignSize = (
     436

@@ -127,6 +127,19 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Controllers\uConsultaController.pas"/>
+        <DCCReference Include="Controllers\uCombustivelController.pas"/>
+        <DCCReference Include="Forms\uFormBase.pas">
+            <Form>frFormBase</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Forms\uCombustiveis.pas">
+            <Form>frCombustiveis</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Forms\uBaseCadastro.pas">
+            <Form>frBaseCadastro</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

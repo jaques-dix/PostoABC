@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons,
-  uConstPostoABC, uAbastecerController, Vcl.ComCtrls;
+  uConstPostoABC, uAbastecerController, Vcl.ComCtrls, uFormBase;
 
 type
-  TfrAbastecimento = class(TForm)
+  TfrAbastecimento = class(TfrFormBase)
     edBomba: TLabeledEdit;
     edData: TLabeledEdit;
     edProduto: TLabeledEdit;
@@ -24,9 +24,7 @@ type
     sbStatus: TStatusBar;
     spSair: TSpeedButton;
     procedure FormShow(Sender: TObject);
-    procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure spSairClick(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 
   private
@@ -60,21 +58,6 @@ end;
 procedure TfrAbastecimento.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
    CanClose := wController.PodeFechar;
-end;
-
-procedure TfrAbastecimento.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-begin
-   if Key = VK_ESCAPE then
-      Close;
-end;
-
-procedure TfrAbastecimento.FormKeyPress(Sender: TObject; var Key: Char);
-begin
-   if Key = #13 then
-      begin
-         SelectNext(ActiveControl as TWinControl, True, True);
-         Key := #0;
-      end;
 end;
 
 procedure TfrAbastecimento.FormShow(Sender: TObject);
