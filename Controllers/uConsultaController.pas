@@ -143,7 +143,7 @@ begin
    Result := 'Select bb.bdIDBomba, bb.bdDescricao, tq.bdDescricao AS DescTanque, cb.bdDescricao As Combustivel'#13 +
              'from tbBombas bb'#13 +
              '  inner join tbTanques tq on tq.bdIDTanques = bb.bdTanque'#13 +
-             '  inner join tbCombustiveis cb on cb.bdIDCombustivel = tq.bdIDTanques';
+             '  inner join tbCombustiveis cb on cb.bdIDCombustivel = tq.bdCombustivel';
 end;
 
 end.
